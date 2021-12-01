@@ -26,7 +26,6 @@
     "strapi-plugin-i18n": "3.6.8",
     "strapi-plugin-upload": "3.6.8",
     "strapi-plugin-users-permissions": "3.6.8",
-    "strapi-provider-email-gmail-oauth2": "npm:@username/strapi-provider-email-gmail-oauth2@0.1.9",
     "strapi-provider-email-nodemailer": "^3.6.8",
     "strapi-provider-email-sendgrid": "^3.6.8",
     "strapi-utils": "^3.6.8"
