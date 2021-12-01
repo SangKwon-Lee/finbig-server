@@ -1,0 +1,29 @@
+{
+  "kind": "collectionType",
+  "collectionName": "email_auths",
+  "info": {
+    "name": "emailAuth",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false,
+    "increments": true,
+    "timestamps": true,
+    "comment": ""
+  },
+  "attributes": {
+    "code": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "isAuth": {
+      "type": "boolean",
+      "default": false
+    },
+    "type": {
+      "type": "string"
+    }
+  }
+}

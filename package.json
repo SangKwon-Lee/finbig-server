@@ -11,8 +11,10 @@
   },
   "devDependencies": {},
   "dependencies": {
+    "ejs": "^3.1.6",
     "knex": "0.21.18",
     "mysql": "^2.18.1",
+    "nodemailer": "^6.7.2",
     "sqlite3": "5.0.0",
     "strapi": "3.6.8",
     "strapi-admin": "3.6.8",
@@ -24,7 +26,10 @@
     "strapi-plugin-i18n": "3.6.8",
     "strapi-plugin-upload": "3.6.8",
     "strapi-plugin-users-permissions": "3.6.8",
-    "strapi-utils": "3.6.8"
+    "strapi-provider-email-gmail-oauth2": "npm:@username/strapi-provider-email-gmail-oauth2@0.1.9",
+    "strapi-provider-email-nodemailer": "^3.6.8",
+    "strapi-provider-email-sendgrid": "^3.6.8",
+    "strapi-utils": "^3.6.8"
   },
   "author": {
     "name": "A Strapi developer"
