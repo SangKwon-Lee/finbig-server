@@ -69,6 +69,9 @@
     "emailReception": {
       "type": "boolean",
       "default": true
+    },
+    "phone": {
+      "type": "string"
     }
   }
 }
