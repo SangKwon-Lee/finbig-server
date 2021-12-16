@@ -72,6 +72,10 @@
     },
     "phone": {
       "type": "string"
+    },
+    "isDeleted": {
+      "type": "boolean",
+      "default": false
     }
   }
 }
