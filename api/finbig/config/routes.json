@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/finbigs",
+      "handler": "finbig.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/finbigs/count",
+      "handler": "finbig.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/finbigs/:id",
+      "handler": "finbig.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/finbigs",
+      "handler": "finbig.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/finbigs/:id",
+      "handler": "finbig.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/finbigs/:id",
+      "handler": "finbig.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

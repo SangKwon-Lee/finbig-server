@@ -76,6 +76,27 @@
     "isDeleted": {
       "type": "boolean",
       "default": false
+    },
+    "deletedAt": {
+      "type": "datetime"
+    },
+    "isSubscribe": {
+      "type": "boolean",
+      "default": false
+    },
+    "isAdmin": {
+      "type": "boolean",
+      "default": false
+    },
+    "subscriptionDate": {
+      "type": "datetime"
+    },
+    "expirationDate": {
+      "type": "datetime"
+    },
+    "subscription_histories": {
+      "via": "user",
+      "collection": "subscription-history"
     }
   }
 }
