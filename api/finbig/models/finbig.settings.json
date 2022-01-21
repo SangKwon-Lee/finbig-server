@@ -1,0 +1,56 @@
+{
+  "kind": "collectionType",
+  "collectionName": "finbigs",
+  "info": {
+    "name": "finbig",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "thumbnail": {
+      "type": "string"
+    },
+    "order": {
+      "type": "integer",
+      "default": 0
+    },
+    "viewCount": {
+      "type": "biginteger",
+      "default": "0"
+    },
+    "isBest": {
+      "type": "boolean",
+      "default": false
+    },
+    "category": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "period": {
+      "type": "string"
+    },
+    "contents": {
+      "type": "text"
+    },
+    "isShow": {
+      "type": "boolean",
+      "default": true
+    },
+    "apiName": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "kind": "collectionType",
+  "collectionName": "visual_data",
+  "info": {
+    "name": "visualData",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "viewCount": {
+      "type": "biginteger"
+    },
+    "isShow": {
+      "type": "boolean",
+      "default": false
+    },
+    "contents": {
+      "type": "text"
+    },
+    "thumbnail": {
+      "type": "string"
+    }
+  }
+}

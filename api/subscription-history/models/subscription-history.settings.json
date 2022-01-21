@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "subscription_histories",
+  "info": {
+    "name": "subscriptionHistory",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "price": {
+      "type": "integer"
+    },
+    "period": {
+      "type": "integer"
+    },
+    "user": {
+      "via": "subscription_histories",
+      "plugin": "users-permissions",
+      "model": "user"
+    },
+    "MID": {
+      "type": "string"
+    },
+    "paymentMethod": {
+      "type": "string"
+    },
+    "paymentStatus": {
+      "type": "string"
+    }
+  }
+}
