@@ -97,6 +97,13 @@
     "subscription_histories": {
       "via": "user",
       "collection": "subscription-history"
+    },
+    "finbigView": {
+      "collection": "finbig"
+    },
+    "finbigDownload": {
+      "via": "user",
+      "collection": "finbig"
     }
   }
 }

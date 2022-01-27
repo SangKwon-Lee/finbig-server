@@ -51,6 +51,14 @@
     },
     "apiName": {
       "type": "string"
+    },
+    "user": {
+      "via": "finbigDownload",
+      "plugin": "users-permissions",
+      "model": "user"
+    },
+    "relationFinbigs": {
+      "collection": "finbig"
     }
   }
 }
