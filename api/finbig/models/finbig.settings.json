@@ -52,13 +52,20 @@
     "apiName": {
       "type": "string"
     },
-    "user": {
-      "via": "finbigDownload",
-      "plugin": "users-permissions",
-      "model": "user"
-    },
     "relationFinbigs": {
       "collection": "finbig"
+    },
+    "downloadPeriod": {
+      "type": "string"
+    },
+    "isUpdate": {
+      "type": "boolean",
+      "default": false
+    },
+    "users": {
+      "via": "finbig_downloads",
+      "plugin": "users-permissions",
+      "collection": "user"
     }
   }
 }

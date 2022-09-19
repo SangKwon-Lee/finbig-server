@@ -1,0 +1,1521 @@
+input FileInfoInput {
+  name: String
+  alternativeText: String
+  caption: String
+}
+
+type UsersPermissionsMe {
+  id: ID!
+  username: String!
+  email: String!
+  confirmed: Boolean
+  blocked: Boolean
+  role: UsersPermissionsMeRole
+}
+
+type UsersPermissionsMeRole {
+  id: ID!
+  name: String!
+  description: String
+  type: String
+}
+
+input UsersPermissionsRegisterInput {
+  username: String!
+  email: String!
+  password: String!
+}
+
+input UsersPermissionsLoginInput {
+  identifier: String!
+  password: String!
+  provider: String = "local"
+}
+
+type UsersPermissionsLoginPayload {
+  jwt: String
+  user: UsersPermissionsMe!
+}
+
+type UserPermissionsPasswordPayload {
+  ok: Boolean!
+}
+
+type EmailAuth {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  code: String
+  email: String
+  isAuth: Boolean
+  type: String
+}
+
+type EmailAuthConnection {
+  values: [EmailAuth]
+  groupBy: EmailAuthGroupBy
+  aggregate: EmailAuthAggregator
+}
+
+type EmailAuthAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type EmailAuthGroupBy {
+  id: [EmailAuthConnectionId]
+  created_at: [EmailAuthConnectionCreated_at]
+  updated_at: [EmailAuthConnectionUpdated_at]
+  code: [EmailAuthConnectionCode]
+  email: [EmailAuthConnectionEmail]
+  isAuth: [EmailAuthConnectionIsAuth]
+  type: [EmailAuthConnectionType]
+}
+
+type EmailAuthConnectionId {
+  key: ID
+  connection: EmailAuthConnection
+}
+
+type EmailAuthConnectionCreated_at {
+  key: DateTime
+  connection: EmailAuthConnection
+}
+
+type EmailAuthConnectionUpdated_at {
+  key: DateTime
+  connection: EmailAuthConnection
+}
+
+type EmailAuthConnectionCode {
+  key: String
+  connection: EmailAuthConnection
+}
+
+type EmailAuthConnectionEmail {
+  key: String
+  connection: EmailAuthConnection
+}
+
+type EmailAuthConnectionIsAuth {
+  key: Boolean
+  connection: EmailAuthConnection
+}
+
+type EmailAuthConnectionType {
+  key: String
+  connection: EmailAuthConnection
+}
+
+input EmailAuthInput {
+  code: String
+  email: String
+  isAuth: Boolean
+  type: String
+  created_by: ID
+  updated_by: ID
+}
+
+input editEmailAuthInput {
+  code: String
+  email: String
+  isAuth: Boolean
+  type: String
+  created_by: ID
+  updated_by: ID
+}
+
+input createEmailAuthInput {
+  data: EmailAuthInput
+}
+
+type createEmailAuthPayload {
+  emailAuth: EmailAuth
+}
+
+input updateEmailAuthInput {
+  where: InputID
+  data: editEmailAuthInput
+}
+
+type updateEmailAuthPayload {
+  emailAuth: EmailAuth
+}
+
+input deleteEmailAuthInput {
+  where: InputID
+}
+
+type deleteEmailAuthPayload {
+  emailAuth: EmailAuth
+}
+
+type Finbig {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  title: String
+  description: String
+  thumbnail: String
+  order: Int
+  viewCount: Long
+  isBest: Boolean
+  category: String
+  type: String
+  period: String
+  contents: String
+  isShow: Boolean
+  apiName: String
+  downloadPeriod: String
+  isUpdate: Boolean
+  published_at: DateTime
+  relationFinbigs(sort: String, limit: Int, start: Int, where: JSON): [Finbig]
+  users(sort: String, limit: Int, start: Int, where: JSON): [UsersPermissionsUser]
+}
+
+type FinbigConnection {
+  values: [Finbig]
+  groupBy: FinbigGroupBy
+  aggregate: FinbigAggregator
+}
+
+type FinbigAggregator {
+  count: Int
+  totalCount: Int
+  sum: FinbigAggregatorSum
+  avg: FinbigAggregatorAvg
+  min: FinbigAggregatorMin
+  max: FinbigAggregatorMax
+}
+
+type FinbigAggregatorSum {
+  order: Float
+}
+
+type FinbigAggregatorAvg {
+  order: Float
+}
+
+type FinbigAggregatorMin {
+  order: Float
+}
+
+type FinbigAggregatorMax {
+  order: Float
+}
+
+type FinbigGroupBy {
+  id: [FinbigConnectionId]
+  created_at: [FinbigConnectionCreated_at]
+  updated_at: [FinbigConnectionUpdated_at]
+  title: [FinbigConnectionTitle]
+  description: [FinbigConnectionDescription]
+  thumbnail: [FinbigConnectionThumbnail]
+  order: [FinbigConnectionOrder]
+  viewCount: [FinbigConnectionViewCount]
+  isBest: [FinbigConnectionIsBest]
+  category: [FinbigConnectionCategory]
+  type: [FinbigConnectionType]
+  period: [FinbigConnectionPeriod]
+  contents: [FinbigConnectionContents]
+  isShow: [FinbigConnectionIsShow]
+  apiName: [FinbigConnectionApiName]
+  downloadPeriod: [FinbigConnectionDownloadPeriod]
+  isUpdate: [FinbigConnectionIsUpdate]
+  published_at: [FinbigConnectionPublished_at]
+}
+
+type FinbigConnectionId {
+  key: ID
+  connection: FinbigConnection
+}
+
+type FinbigConnectionCreated_at {
+  key: DateTime
+  connection: FinbigConnection
+}
+
+type FinbigConnectionUpdated_at {
+  key: DateTime
+  connection: FinbigConnection
+}
+
+type FinbigConnectionTitle {
+  key: String
+  connection: FinbigConnection
+}
+
+type FinbigConnectionDescription {
+  key: String
+  connection: FinbigConnection
+}
+
+type FinbigConnectionThumbnail {
+  key: String
+  connection: FinbigConnection
+}
+
+type FinbigConnectionOrder {
+  key: Int
+  connection: FinbigConnection
+}
+
+type FinbigConnectionViewCount {
+  key: ID
+  connection: FinbigConnection
+}
+
+type FinbigConnectionIsBest {
+  key: Boolean
+  connection: FinbigConnection
+}
+
+type FinbigConnectionCategory {
+  key: String
+  connection: FinbigConnection
+}
+
+type FinbigConnectionType {
+  key: String
+  connection: FinbigConnection
+}
+
+type FinbigConnectionPeriod {
+  key: String
+  connection: FinbigConnection
+}
+
+type FinbigConnectionContents {
+  key: String
+  connection: FinbigConnection
+}
+
+type FinbigConnectionIsShow {
+  key: Boolean
+  connection: FinbigConnection
+}
+
+type FinbigConnectionApiName {
+  key: String
+  connection: FinbigConnection
+}
+
+type FinbigConnectionDownloadPeriod {
+  key: String
+  connection: FinbigConnection
+}
+
+type FinbigConnectionIsUpdate {
+  key: Boolean
+  connection: FinbigConnection
+}
+
+type FinbigConnectionPublished_at {
+  key: DateTime
+  connection: FinbigConnection
+}
+
+input FinbigInput {
+  title: String
+  description: String
+  thumbnail: String
+  order: Int
+  viewCount: Long
+  isBest: Boolean
+  category: String
+  type: String
+  period: String
+  contents: String
+  isShow: Boolean
+  apiName: String
+  relationFinbigs: [ID]
+  downloadPeriod: String
+  isUpdate: Boolean
+  users: [ID]
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editFinbigInput {
+  title: String
+  description: String
+  thumbnail: String
+  order: Int
+  viewCount: Long
+  isBest: Boolean
+  category: String
+  type: String
+  period: String
+  contents: String
+  isShow: Boolean
+  apiName: String
+  relationFinbigs: [ID]
+  downloadPeriod: String
+  isUpdate: Boolean
+  users: [ID]
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input createFinbigInput {
+  data: FinbigInput
+}
+
+type createFinbigPayload {
+  finbig: Finbig
+}
+
+input updateFinbigInput {
+  where: InputID
+  data: editFinbigInput
+}
+
+type updateFinbigPayload {
+  finbig: Finbig
+}
+
+input deleteFinbigInput {
+  where: InputID
+}
+
+type deleteFinbigPayload {
+  finbig: Finbig
+}
+
+type SubscriptionHistory {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  title: String
+  price: Int
+  period: Int
+  user: UsersPermissionsUser
+  MID: String
+  paymentMethod: String
+  paymentStatus: String
+  published_at: DateTime
+}
+
+type SubscriptionHistoryConnection {
+  values: [SubscriptionHistory]
+  groupBy: SubscriptionHistoryGroupBy
+  aggregate: SubscriptionHistoryAggregator
+}
+
+type SubscriptionHistoryAggregator {
+  count: Int
+  totalCount: Int
+  sum: SubscriptionHistoryAggregatorSum
+  avg: SubscriptionHistoryAggregatorAvg
+  min: SubscriptionHistoryAggregatorMin
+  max: SubscriptionHistoryAggregatorMax
+}
+
+type SubscriptionHistoryAggregatorSum {
+  price: Float
+  period: Float
+}
+
+type SubscriptionHistoryAggregatorAvg {
+  price: Float
+  period: Float
+}
+
+type SubscriptionHistoryAggregatorMin {
+  price: Float
+  period: Float
+}
+
+type SubscriptionHistoryAggregatorMax {
+  price: Float
+  period: Float
+}
+
+type SubscriptionHistoryGroupBy {
+  id: [SubscriptionHistoryConnectionId]
+  created_at: [SubscriptionHistoryConnectionCreated_at]
+  updated_at: [SubscriptionHistoryConnectionUpdated_at]
+  title: [SubscriptionHistoryConnectionTitle]
+  price: [SubscriptionHistoryConnectionPrice]
+  period: [SubscriptionHistoryConnectionPeriod]
+  user: [SubscriptionHistoryConnectionUser]
+  MID: [SubscriptionHistoryConnectionMID]
+  paymentMethod: [SubscriptionHistoryConnectionPaymentMethod]
+  paymentStatus: [SubscriptionHistoryConnectionPaymentStatus]
+  published_at: [SubscriptionHistoryConnectionPublished_at]
+}
+
+type SubscriptionHistoryConnectionId {
+  key: ID
+  connection: SubscriptionHistoryConnection
+}
+
+type SubscriptionHistoryConnectionCreated_at {
+  key: DateTime
+  connection: SubscriptionHistoryConnection
+}
+
+type SubscriptionHistoryConnectionUpdated_at {
+  key: DateTime
+  connection: SubscriptionHistoryConnection
+}
+
+type SubscriptionHistoryConnectionTitle {
+  key: String
+  connection: SubscriptionHistoryConnection
+}
+
+type SubscriptionHistoryConnectionPrice {
+  key: Int
+  connection: SubscriptionHistoryConnection
+}
+
+type SubscriptionHistoryConnectionPeriod {
+  key: Int
+  connection: SubscriptionHistoryConnection
+}
+
+type SubscriptionHistoryConnectionUser {
+  key: ID
+  connection: SubscriptionHistoryConnection
+}
+
+type SubscriptionHistoryConnectionMID {
+  key: String
+  connection: SubscriptionHistoryConnection
+}
+
+type SubscriptionHistoryConnectionPaymentMethod {
+  key: String
+  connection: SubscriptionHistoryConnection
+}
+
+type SubscriptionHistoryConnectionPaymentStatus {
+  key: String
+  connection: SubscriptionHistoryConnection
+}
+
+type SubscriptionHistoryConnectionPublished_at {
+  key: DateTime
+  connection: SubscriptionHistoryConnection
+}
+
+input SubscriptionHistoryInput {
+  title: String
+  price: Int
+  period: Int
+  user: ID
+  MID: String
+  paymentMethod: String
+  paymentStatus: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editSubscriptionHistoryInput {
+  title: String
+  price: Int
+  period: Int
+  user: ID
+  MID: String
+  paymentMethod: String
+  paymentStatus: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input createSubscriptionHistoryInput {
+  data: SubscriptionHistoryInput
+}
+
+type createSubscriptionHistoryPayload {
+  subscriptionHistory: SubscriptionHistory
+}
+
+input updateSubscriptionHistoryInput {
+  where: InputID
+  data: editSubscriptionHistoryInput
+}
+
+type updateSubscriptionHistoryPayload {
+  subscriptionHistory: SubscriptionHistory
+}
+
+input deleteSubscriptionHistoryInput {
+  where: InputID
+}
+
+type deleteSubscriptionHistoryPayload {
+  subscriptionHistory: SubscriptionHistory
+}
+
+type Token {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  userId: String
+  token: String
+  published_at: DateTime
+}
+
+type TokenConnection {
+  values: [Token]
+  groupBy: TokenGroupBy
+  aggregate: TokenAggregator
+}
+
+type TokenAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type TokenGroupBy {
+  id: [TokenConnectionId]
+  created_at: [TokenConnectionCreated_at]
+  updated_at: [TokenConnectionUpdated_at]
+  userId: [TokenConnectionUserId]
+  token: [TokenConnectionToken]
+  published_at: [TokenConnectionPublished_at]
+}
+
+type TokenConnectionId {
+  key: ID
+  connection: TokenConnection
+}
+
+type TokenConnectionCreated_at {
+  key: DateTime
+  connection: TokenConnection
+}
+
+type TokenConnectionUpdated_at {
+  key: DateTime
+  connection: TokenConnection
+}
+
+type TokenConnectionUserId {
+  key: String
+  connection: TokenConnection
+}
+
+type TokenConnectionToken {
+  key: String
+  connection: TokenConnection
+}
+
+type TokenConnectionPublished_at {
+  key: DateTime
+  connection: TokenConnection
+}
+
+input TokenInput {
+  userId: String
+  token: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editTokenInput {
+  userId: String
+  token: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input createTokenInput {
+  data: TokenInput
+}
+
+type createTokenPayload {
+  token: Token
+}
+
+input updateTokenInput {
+  where: InputID
+  data: editTokenInput
+}
+
+type updateTokenPayload {
+  token: Token
+}
+
+input deleteTokenInput {
+  where: InputID
+}
+
+type deleteTokenPayload {
+  token: Token
+}
+
+type VisualData {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  title: String
+  category: String
+  description: String
+  viewCount: Long
+  isShow: Boolean
+  contents: String
+  thumbnail: String
+  published_at: DateTime
+  finbigs(sort: String, limit: Int, start: Int, where: JSON): [Finbig]
+}
+
+type VisualDataConnection {
+  values: [VisualData]
+  groupBy: VisualDataGroupBy
+  aggregate: VisualDataAggregator
+}
+
+type VisualDataAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type VisualDataGroupBy {
+  id: [VisualDataConnectionId]
+  created_at: [VisualDataConnectionCreated_at]
+  updated_at: [VisualDataConnectionUpdated_at]
+  title: [VisualDataConnectionTitle]
+  category: [VisualDataConnectionCategory]
+  description: [VisualDataConnectionDescription]
+  viewCount: [VisualDataConnectionViewCount]
+  isShow: [VisualDataConnectionIsShow]
+  contents: [VisualDataConnectionContents]
+  thumbnail: [VisualDataConnectionThumbnail]
+  published_at: [VisualDataConnectionPublished_at]
+}
+
+type VisualDataConnectionId {
+  key: ID
+  connection: VisualDataConnection
+}
+
+type VisualDataConnectionCreated_at {
+  key: DateTime
+  connection: VisualDataConnection
+}
+
+type VisualDataConnectionUpdated_at {
+  key: DateTime
+  connection: VisualDataConnection
+}
+
+type VisualDataConnectionTitle {
+  key: String
+  connection: VisualDataConnection
+}
+
+type VisualDataConnectionCategory {
+  key: String
+  connection: VisualDataConnection
+}
+
+type VisualDataConnectionDescription {
+  key: String
+  connection: VisualDataConnection
+}
+
+type VisualDataConnectionViewCount {
+  key: ID
+  connection: VisualDataConnection
+}
+
+type VisualDataConnectionIsShow {
+  key: Boolean
+  connection: VisualDataConnection
+}
+
+type VisualDataConnectionContents {
+  key: String
+  connection: VisualDataConnection
+}
+
+type VisualDataConnectionThumbnail {
+  key: String
+  connection: VisualDataConnection
+}
+
+type VisualDataConnectionPublished_at {
+  key: DateTime
+  connection: VisualDataConnection
+}
+
+input VisualDatumInput {
+  title: String
+  category: String
+  description: String
+  viewCount: Long
+  isShow: Boolean
+  contents: String
+  thumbnail: String
+  finbigs: [ID]
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editVisualDatumInput {
+  title: String
+  category: String
+  description: String
+  viewCount: Long
+  isShow: Boolean
+  contents: String
+  thumbnail: String
+  finbigs: [ID]
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input createVisualDatumInput {
+  data: VisualDatumInput
+}
+
+type createVisualDatumPayload {
+  visualDatum: VisualData
+}
+
+input updateVisualDatumInput {
+  where: InputID
+  data: editVisualDatumInput
+}
+
+type updateVisualDatumPayload {
+  visualDatum: VisualData
+}
+
+input deleteVisualDatumInput {
+  where: InputID
+}
+
+type deleteVisualDatumPayload {
+  visualDatum: VisualData
+}
+
+type I18NLocale {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  name: String
+  code: String
+}
+
+input LocaleInput {
+  name: String
+  code: String
+  created_by: ID
+  updated_by: ID
+}
+
+input editLocaleInput {
+  name: String
+  code: String
+  created_by: ID
+  updated_by: ID
+}
+
+type UploadFile {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  name: String!
+  alternativeText: String
+  caption: String
+  width: Int
+  height: Int
+  formats: JSON
+  hash: String!
+  ext: String
+  mime: String!
+  size: Float!
+  url: String!
+  previewUrl: String
+  provider: String!
+  provider_metadata: JSON
+  related(sort: String, limit: Int, start: Int, where: JSON): [Morph]
+}
+
+type UploadFileConnection {
+  values: [UploadFile]
+  groupBy: UploadFileGroupBy
+  aggregate: UploadFileAggregator
+}
+
+type UploadFileAggregator {
+  count: Int
+  totalCount: Int
+  sum: UploadFileAggregatorSum
+  avg: UploadFileAggregatorAvg
+  min: UploadFileAggregatorMin
+  max: UploadFileAggregatorMax
+}
+
+type UploadFileAggregatorSum {
+  width: Float
+  height: Float
+  size: Float
+}
+
+type UploadFileAggregatorAvg {
+  width: Float
+  height: Float
+  size: Float
+}
+
+type UploadFileAggregatorMin {
+  width: Float
+  height: Float
+  size: Float
+}
+
+type UploadFileAggregatorMax {
+  width: Float
+  height: Float
+  size: Float
+}
+
+type UploadFileGroupBy {
+  id: [UploadFileConnectionId]
+  created_at: [UploadFileConnectionCreated_at]
+  updated_at: [UploadFileConnectionUpdated_at]
+  name: [UploadFileConnectionName]
+  alternativeText: [UploadFileConnectionAlternativeText]
+  caption: [UploadFileConnectionCaption]
+  width: [UploadFileConnectionWidth]
+  height: [UploadFileConnectionHeight]
+  formats: [UploadFileConnectionFormats]
+  hash: [UploadFileConnectionHash]
+  ext: [UploadFileConnectionExt]
+  mime: [UploadFileConnectionMime]
+  size: [UploadFileConnectionSize]
+  url: [UploadFileConnectionUrl]
+  previewUrl: [UploadFileConnectionPreviewUrl]
+  provider: [UploadFileConnectionProvider]
+  provider_metadata: [UploadFileConnectionProvider_metadata]
+}
+
+type UploadFileConnectionId {
+  key: ID
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionCreated_at {
+  key: DateTime
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionUpdated_at {
+  key: DateTime
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionName {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionAlternativeText {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionCaption {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionWidth {
+  key: Int
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionHeight {
+  key: Int
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionFormats {
+  key: JSON
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionHash {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionExt {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionMime {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionSize {
+  key: Float
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionUrl {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionPreviewUrl {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionProvider {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionProvider_metadata {
+  key: JSON
+  connection: UploadFileConnection
+}
+
+input FileInput {
+  name: String!
+  alternativeText: String
+  caption: String
+  width: Int
+  height: Int
+  formats: JSON
+  hash: String!
+  ext: String
+  mime: String!
+  size: Float!
+  url: String!
+  previewUrl: String
+  provider: String!
+  provider_metadata: JSON
+  related: [ID]
+  created_by: ID
+  updated_by: ID
+}
+
+input editFileInput {
+  name: String
+  alternativeText: String
+  caption: String
+  width: Int
+  height: Int
+  formats: JSON
+  hash: String
+  ext: String
+  mime: String
+  size: Float
+  url: String
+  previewUrl: String
+  provider: String
+  provider_metadata: JSON
+  related: [ID]
+  created_by: ID
+  updated_by: ID
+}
+
+input deleteFileInput {
+  where: InputID
+}
+
+type deleteFilePayload {
+  file: UploadFile
+}
+
+type UsersPermissionsPermission {
+  id: ID!
+  type: String!
+  controller: String!
+  action: String!
+  enabled: Boolean!
+  policy: String
+  role: UsersPermissionsRole
+}
+
+type UsersPermissionsRole {
+  id: ID!
+  name: String!
+  description: String
+  type: String
+  permissions(sort: String, limit: Int, start: Int, where: JSON): [UsersPermissionsPermission]
+  users(sort: String, limit: Int, start: Int, where: JSON): [UsersPermissionsUser]
+}
+
+type UsersPermissionsRoleConnection {
+  values: [UsersPermissionsRole]
+  groupBy: UsersPermissionsRoleGroupBy
+  aggregate: UsersPermissionsRoleAggregator
+}
+
+type UsersPermissionsRoleAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type UsersPermissionsRoleGroupBy {
+  id: [UsersPermissionsRoleConnectionId]
+  name: [UsersPermissionsRoleConnectionName]
+  description: [UsersPermissionsRoleConnectionDescription]
+  type: [UsersPermissionsRoleConnectionType]
+}
+
+type UsersPermissionsRoleConnectionId {
+  key: ID
+  connection: UsersPermissionsRoleConnection
+}
+
+type UsersPermissionsRoleConnectionName {
+  key: String
+  connection: UsersPermissionsRoleConnection
+}
+
+type UsersPermissionsRoleConnectionDescription {
+  key: String
+  connection: UsersPermissionsRoleConnection
+}
+
+type UsersPermissionsRoleConnectionType {
+  key: String
+  connection: UsersPermissionsRoleConnection
+}
+
+input RoleInput {
+  name: String!
+  description: String
+  type: String
+  permissions: [ID]
+  users: [ID]
+  created_by: ID
+  updated_by: ID
+}
+
+input editRoleInput {
+  name: String
+  description: String
+  type: String
+  permissions: [ID]
+  users: [ID]
+  created_by: ID
+  updated_by: ID
+}
+
+input createRoleInput {
+  data: RoleInput
+}
+
+type createRolePayload {
+  role: UsersPermissionsRole
+}
+
+input updateRoleInput {
+  where: InputID
+  data: editRoleInput
+}
+
+type updateRolePayload {
+  role: UsersPermissionsRole
+}
+
+input deleteRoleInput {
+  where: InputID
+}
+
+type deleteRolePayload {
+  role: UsersPermissionsRole
+}
+
+type UsersPermissionsUser {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  username: String!
+  email: String!
+  provider: String
+  confirmed: Boolean
+  blocked: Boolean
+  role: UsersPermissionsRole
+  name: String
+  smsReception: Boolean
+  emailReception: Boolean
+  phone: String
+  isDeleted: Boolean
+  deletedAt: DateTime
+  isSubscribe: Boolean
+  isAdmin: Boolean
+  subscriptionDate: DateTime
+  expirationDate: DateTime
+  downloadCount: Int
+  subscription_histories(sort: String, limit: Int, start: Int, where: JSON): [SubscriptionHistory]
+  finbigView(sort: String, limit: Int, start: Int, where: JSON): [Finbig]
+  finbig_downloads(sort: String, limit: Int, start: Int, where: JSON): [Finbig]
+}
+
+type UsersPermissionsUserConnection {
+  values: [UsersPermissionsUser]
+  groupBy: UsersPermissionsUserGroupBy
+  aggregate: UsersPermissionsUserAggregator
+}
+
+type UsersPermissionsUserAggregator {
+  count: Int
+  totalCount: Int
+  sum: UsersPermissionsUserAggregatorSum
+  avg: UsersPermissionsUserAggregatorAvg
+  min: UsersPermissionsUserAggregatorMin
+  max: UsersPermissionsUserAggregatorMax
+}
+
+type UsersPermissionsUserAggregatorSum {
+  downloadCount: Float
+}
+
+type UsersPermissionsUserAggregatorAvg {
+  downloadCount: Float
+}
+
+type UsersPermissionsUserAggregatorMin {
+  downloadCount: Float
+}
+
+type UsersPermissionsUserAggregatorMax {
+  downloadCount: Float
+}
+
+type UsersPermissionsUserGroupBy {
+  id: [UsersPermissionsUserConnectionId]
+  created_at: [UsersPermissionsUserConnectionCreated_at]
+  updated_at: [UsersPermissionsUserConnectionUpdated_at]
+  username: [UsersPermissionsUserConnectionUsername]
+  email: [UsersPermissionsUserConnectionEmail]
+  provider: [UsersPermissionsUserConnectionProvider]
+  confirmed: [UsersPermissionsUserConnectionConfirmed]
+  blocked: [UsersPermissionsUserConnectionBlocked]
+  role: [UsersPermissionsUserConnectionRole]
+  name: [UsersPermissionsUserConnectionName]
+  smsReception: [UsersPermissionsUserConnectionSmsReception]
+  emailReception: [UsersPermissionsUserConnectionEmailReception]
+  phone: [UsersPermissionsUserConnectionPhone]
+  isDeleted: [UsersPermissionsUserConnectionIsDeleted]
+  deletedAt: [UsersPermissionsUserConnectionDeletedAt]
+  isSubscribe: [UsersPermissionsUserConnectionIsSubscribe]
+  isAdmin: [UsersPermissionsUserConnectionIsAdmin]
+  subscriptionDate: [UsersPermissionsUserConnectionSubscriptionDate]
+  expirationDate: [UsersPermissionsUserConnectionExpirationDate]
+  downloadCount: [UsersPermissionsUserConnectionDownloadCount]
+}
+
+type UsersPermissionsUserConnectionId {
+  key: ID
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionCreated_at {
+  key: DateTime
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionUpdated_at {
+  key: DateTime
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionUsername {
+  key: String
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionEmail {
+  key: String
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionProvider {
+  key: String
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionConfirmed {
+  key: Boolean
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionBlocked {
+  key: Boolean
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionRole {
+  key: ID
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionName {
+  key: String
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionSmsReception {
+  key: Boolean
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionEmailReception {
+  key: Boolean
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionPhone {
+  key: String
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionIsDeleted {
+  key: Boolean
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionDeletedAt {
+  key: DateTime
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionIsSubscribe {
+  key: Boolean
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionIsAdmin {
+  key: Boolean
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionSubscriptionDate {
+  key: DateTime
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionExpirationDate {
+  key: DateTime
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionDownloadCount {
+  key: Int
+  connection: UsersPermissionsUserConnection
+}
+
+input UserInput {
+  username: String!
+  email: String!
+  provider: String
+  password: String
+  resetPasswordToken: String
+  confirmationToken: String
+  confirmed: Boolean
+  blocked: Boolean
+  role: ID
+  name: String
+  smsReception: Boolean
+  emailReception: Boolean
+  phone: String
+  isDeleted: Boolean
+  deletedAt: DateTime
+  isSubscribe: Boolean
+  isAdmin: Boolean
+  subscriptionDate: DateTime
+  expirationDate: DateTime
+  subscription_histories: [ID]
+  finbigView: [ID]
+  finbig_downloads: [ID]
+  downloadCount: Int
+  created_by: ID
+  updated_by: ID
+}
+
+input editUserInput {
+  username: String
+  email: String
+  provider: String
+  password: String
+  resetPasswordToken: String
+  confirmationToken: String
+  confirmed: Boolean
+  blocked: Boolean
+  role: ID
+  name: String
+  smsReception: Boolean
+  emailReception: Boolean
+  phone: String
+  isDeleted: Boolean
+  deletedAt: DateTime
+  isSubscribe: Boolean
+  isAdmin: Boolean
+  subscriptionDate: DateTime
+  expirationDate: DateTime
+  subscription_histories: [ID]
+  finbigView: [ID]
+  finbig_downloads: [ID]
+  downloadCount: Int
+  created_by: ID
+  updated_by: ID
+}
+
+input createUserInput {
+  data: UserInput
+}
+
+type createUserPayload {
+  user: UsersPermissionsUser
+}
+
+input updateUserInput {
+  where: InputID
+  data: editUserInput
+}
+
+type updateUserPayload {
+  user: UsersPermissionsUser
+}
+
+input deleteUserInput {
+  where: InputID
+}
+
+type deleteUserPayload {
+  user: UsersPermissionsUser
+}
+
+union Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | EmailAuth | EmailAuthConnection | EmailAuthAggregator | EmailAuthGroupBy | EmailAuthConnectionId | EmailAuthConnectionCreated_at | EmailAuthConnectionUpdated_at | EmailAuthConnectionCode | EmailAuthConnectionEmail | EmailAuthConnectionIsAuth | EmailAuthConnectionType | createEmailAuthPayload | updateEmailAuthPayload | deleteEmailAuthPayload | Finbig | FinbigConnection | FinbigAggregator | FinbigAggregatorSum | FinbigAggregatorAvg | FinbigAggregatorMin | FinbigAggregatorMax | FinbigGroupBy | FinbigConnectionId | FinbigConnectionCreated_at | FinbigConnectionUpdated_at | FinbigConnectionTitle | FinbigConnectionDescription | FinbigConnectionThumbnail | FinbigConnectionOrder | FinbigConnectionViewCount | FinbigConnectionIsBest | FinbigConnectionCategory | FinbigConnectionType | FinbigConnectionPeriod | FinbigConnectionContents | FinbigConnectionIsShow | FinbigConnectionApiName | FinbigConnectionDownloadPeriod | FinbigConnectionIsUpdate | FinbigConnectionPublished_at | createFinbigPayload | updateFinbigPayload | deleteFinbigPayload | SubscriptionHistory | SubscriptionHistoryConnection | SubscriptionHistoryAggregator | SubscriptionHistoryAggregatorSum | SubscriptionHistoryAggregatorAvg | SubscriptionHistoryAggregatorMin | SubscriptionHistoryAggregatorMax | SubscriptionHistoryGroupBy | SubscriptionHistoryConnectionId | SubscriptionHistoryConnectionCreated_at | SubscriptionHistoryConnectionUpdated_at | SubscriptionHistoryConnectionTitle | SubscriptionHistoryConnectionPrice | SubscriptionHistoryConnectionPeriod | SubscriptionHistoryConnectionUser | SubscriptionHistoryConnectionMID | SubscriptionHistoryConnectionPaymentMethod | SubscriptionHistoryConnectionPaymentStatus | SubscriptionHistoryConnectionPublished_at | createSubscriptionHistoryPayload | updateSubscriptionHistoryPayload | deleteSubscriptionHistoryPayload | Token | TokenConnection | TokenAggregator | TokenGroupBy | TokenConnectionId | TokenConnectionCreated_at | TokenConnectionUpdated_at | TokenConnectionUserId | TokenConnectionToken | TokenConnectionPublished_at | createTokenPayload | updateTokenPayload | deleteTokenPayload | VisualData | VisualDataConnection | VisualDataAggregator | VisualDataGroupBy | VisualDataConnectionId | VisualDataConnectionCreated_at | VisualDataConnectionUpdated_at | VisualDataConnectionTitle | VisualDataConnectionCategory | VisualDataConnectionDescription | VisualDataConnectionViewCount | VisualDataConnectionIsShow | VisualDataConnectionContents | VisualDataConnectionThumbnail | VisualDataConnectionPublished_at | createVisualDatumPayload | updateVisualDatumPayload | deleteVisualDatumPayload | I18NLocale | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_at | UploadFileConnectionUpdated_at | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_metadata | deleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserAggregatorSum | UsersPermissionsUserAggregatorAvg | UsersPermissionsUserAggregatorMin | UsersPermissionsUserAggregatorMax | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_at | UsersPermissionsUserConnectionUpdated_at | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | UsersPermissionsUserConnectionName | UsersPermissionsUserConnectionSmsReception | UsersPermissionsUserConnectionEmailReception | UsersPermissionsUserConnectionPhone | UsersPermissionsUserConnectionIsDeleted | UsersPermissionsUserConnectionDeletedAt | UsersPermissionsUserConnectionIsSubscribe | UsersPermissionsUserConnectionIsAdmin | UsersPermissionsUserConnectionSubscriptionDate | UsersPermissionsUserConnectionExpirationDate | UsersPermissionsUserConnectionDownloadCount | createUserPayload | updateUserPayload | deleteUserPayload
+
+input InputID {
+  id: ID!
+}
+
+enum PublicationState {
+  LIVE
+  PREVIEW
+}
+
+type AdminUser {
+  id: ID!
+  username: String
+  firstname: String!
+  lastname: String!
+}
+
+type Query {
+  emailAuth(id: ID!, publicationState: PublicationState): EmailAuth
+  emailAuths(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [EmailAuth]
+  emailAuthsConnection(sort: String, limit: Int, start: Int, where: JSON): EmailAuthConnection
+  finbig(id: ID!, publicationState: PublicationState): Finbig
+  finbigs(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [Finbig]
+  finbigsConnection(sort: String, limit: Int, start: Int, where: JSON): FinbigConnection
+  subscriptionHistory(id: ID!, publicationState: PublicationState): SubscriptionHistory
+  subscriptionHistories(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [SubscriptionHistory]
+  subscriptionHistoriesConnection(sort: String, limit: Int, start: Int, where: JSON): SubscriptionHistoryConnection
+  token(id: ID!, publicationState: PublicationState): Token
+  tokens(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [Token]
+  tokensConnection(sort: String, limit: Int, start: Int, where: JSON): TokenConnection
+  visualDatum(id: ID!, publicationState: PublicationState): VisualData
+  visualData(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [VisualData]
+  visualDataConnection(sort: String, limit: Int, start: Int, where: JSON): VisualDataConnection
+  files(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [UploadFile]
+  filesConnection(sort: String, limit: Int, start: Int, where: JSON): UploadFileConnection
+  role(id: ID!, publicationState: PublicationState): UsersPermissionsRole
+
+  """
+  Retrieve all the existing roles. You can't apply filters on this query.
+  """
+  roles(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [UsersPermissionsRole]
+  rolesConnection(sort: String, limit: Int, start: Int, where: JSON): UsersPermissionsRoleConnection
+  user(id: ID!, publicationState: PublicationState): UsersPermissionsUser
+  users(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [UsersPermissionsUser]
+  usersConnection(sort: String, limit: Int, start: Int, where: JSON): UsersPermissionsUserConnection
+  me: UsersPermissionsMe
+}
+
+type Mutation {
+  createEmailAuth(input: createEmailAuthInput): createEmailAuthPayload
+  updateEmailAuth(input: updateEmailAuthInput): updateEmailAuthPayload
+  deleteEmailAuth(input: deleteEmailAuthInput): deleteEmailAuthPayload
+  createFinbig(input: createFinbigInput): createFinbigPayload
+  updateFinbig(input: updateFinbigInput): updateFinbigPayload
+  deleteFinbig(input: deleteFinbigInput): deleteFinbigPayload
+  createSubscriptionHistory(input: createSubscriptionHistoryInput): createSubscriptionHistoryPayload
+  updateSubscriptionHistory(input: updateSubscriptionHistoryInput): updateSubscriptionHistoryPayload
+  deleteSubscriptionHistory(input: deleteSubscriptionHistoryInput): deleteSubscriptionHistoryPayload
+  createToken(input: createTokenInput): createTokenPayload
+  updateToken(input: updateTokenInput): updateTokenPayload
+  deleteToken(input: deleteTokenInput): deleteTokenPayload
+  createVisualDatum(input: createVisualDatumInput): createVisualDatumPayload
+  updateVisualDatum(input: updateVisualDatumInput): updateVisualDatumPayload
+  deleteVisualDatum(input: deleteVisualDatumInput): deleteVisualDatumPayload
+
+  """Delete one file"""
+  deleteFile(input: deleteFileInput): deleteFilePayload
+
+  """Create a new role"""
+  createRole(input: createRoleInput): createRolePayload
+
+  """Update an existing role"""
+  updateRole(input: updateRoleInput): updateRolePayload
+
+  """Delete an existing role"""
+  deleteRole(input: deleteRoleInput): deleteRolePayload
+
+  """Create a new user"""
+  createUser(input: createUserInput): createUserPayload
+
+  """Update an existing user"""
+  updateUser(input: updateUserInput): updateUserPayload
+
+  """Delete an existing user"""
+  deleteUser(input: deleteUserInput): deleteUserPayload
+  upload(refId: ID, ref: String, field: String, source: String, info: FileInfoInput, file: Upload!): UploadFile!
+  multipleUpload(refId: ID, ref: String, field: String, source: String, files: [Upload]!): [UploadFile]!
+  updateFileInfo(id: ID!, info: FileInfoInput!): UploadFile!
+  login(input: UsersPermissionsLoginInput!): UsersPermissionsLoginPayload!
+  register(input: UsersPermissionsRegisterInput!): UsersPermissionsLoginPayload!
+  forgotPassword(email: String!): UserPermissionsPasswordPayload
+  resetPassword(password: String!, passwordConfirmation: String!, code: String!): UsersPermissionsLoginPayload
+  emailConfirmation(confirmation: String!): UsersPermissionsLoginPayload
+  fetchToken(userId: String, token: String): Token
+}
+
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON @specifiedBy(url: "http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf")
+
+"""
+A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
+"""
+scalar DateTime
+
+"""A time string with format: HH:mm:ss.SSS"""
+scalar Time
+
+"""
+A date string, such as 2007-12-03, compliant with the `full-date` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
+"""
+scalar Date
+
+"""The `Long` scalar type represents 52-bit integers"""
+scalar Long
+
+"""The `Upload` scalar type represents a file upload."""
+scalar Upload

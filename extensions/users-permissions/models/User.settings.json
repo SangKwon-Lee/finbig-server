@@ -101,9 +101,14 @@
     "finbigView": {
       "collection": "finbig"
     },
-    "finbigDownload": {
-      "via": "user",
-      "collection": "finbig"
+    "finbig_downloads": {
+      "collection": "finbig",
+      "via": "users",
+      "dominant": true
+    },
+    "downloadCount": {
+      "type": "integer",
+      "default": 0
     }
   }
 }

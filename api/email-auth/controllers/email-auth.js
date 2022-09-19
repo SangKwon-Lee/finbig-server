@@ -8,21 +8,37 @@ var appDir = path.dirname(require.main.filename);
 const { parseMultipartData, sanitizeEntity } = require("strapi-utils");
 module.exports = {
   async create(ctx, res) {
-    const { email } = ctx.request.body;
-    const { type } = ctx.request.body;
-    const vaildCheck = email.indexOf("@");
-    if (!email || email.length === 0 || vaildCheck === -1) {
-      return "잘못된 이메일 형식입니다.";
-    }
-    const isUser = await strapi
-      .query("user", "users-permissions")
-      .findOne({ email: email });
-    if (isUser && type === "signup") {
-      return "이미 회원가입된 이메일입니다.";
+    const { email, type } = ctx.request.body;
+
+    let isUser = {
+      email: "",
+      isDeleted: false,
+    };
+
+    try {
+      const userData = await strapi
+        .query("user", "users-permissions")
+        .findOne({ email: email });
+      if (userData) {
+        isUser = userData;
+      }
+    } catch (e) {
+      console.log(e);
     }
 
-    if (!isUser && type === "find") {
+    if (isUser.email.length > 0 && type === "signup") {
+      ctx.resonse.code === 200;
+      return "중복된 이메일 입니다.";
+    }
+
+    if (isUser.email.length === 0 && type === "find") {
+      ctx.resonse.code === 200;
       return "이메일 정보가 없습니다.";
+    }
+
+    if (isUser.isDeleted && type === "find") {
+      ctx.resonse.code === 200;
+      return isUser;
     }
 
     //* 랜덤 문자열 생성
@@ -34,20 +50,11 @@ module.exports = {
       `인증코드는 ${code}입니다. 유효 시간은 3분입니다.`
     );
     await strapi.query("email-auth").create({ code, isAuth: false });
-    //* 10분 동안 입력하지 않으면 데이터 파괴
+
+    //* 3분 동안 입력하지 않으면 데이터 파괴
     setTimeout(async () => {
       if (strapi.query("email-auth").findOne({ code })) {
-        await strapi
-          .query("email-auth")
-          .findOne({ code })
-          .then(async (data) => {
-            if (data.isAuth === false) {
-              await strapi.query("email-auth").delete({ code });
-              return;
-            } else {
-              await strapi.query("email-auth").update({ code: null });
-            }
-          });
+        await strapi.query("email-auth").delete({ code });
       }
     }, 1000 * 60 * 3);
   },
